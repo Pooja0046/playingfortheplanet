@@ -1,0 +1,176 @@
+/* Base Styles */
+body {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.tv-container {
+  position: relative;
+  width: 80vw;
+  max-width: 1000px;
+}
+
+.tv-frame {
+  width: 100%;
+  display: block;
+}
+
+.tv-screen {
+  position: absolute;
+  top: 23%;
+  left: 10%;
+  width: 60%;
+  height: 55%;
+  background-color: black;
+  color: lime;
+  font-family: monospace;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: visible;
+}
+
+
+
+.tv-overlay {
+  background: url('../assets/img/tvoverlay.gif');
+  background-size: cover;
+  position: absolute;
+  top: 22.5%;   /* adjust to fit the TV screen shape */
+  left: 10%;  /* adjust to fit */
+  right: 22%;
+  width: 60%; /* adjust to fit */
+  height: 56%; /* adjust to fit */
+  pointer-events: none;
+  z-index: 15;
+  opacity: 0.2;
+}
+
+
+
+
+/* Controls */
+.controls-vertical {
+  position: absolute;
+  right: 8%;
+  bottom: 18%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.controls-vertical button {
+  background-color: black;
+  border: 2px solid lime;
+  color: lime;
+  font-family: monospace;
+  padding: 15px 0px;
+  font-size: 1.2rem;
+  width: 80px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.controls-vertical button:hover {
+  background-color: lime;
+  color: black;
+}
+
+/* Video Styling */
+.tv-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay Message */
+.overlay-message {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  color: rgb(255, 0, 0);
+  text-shadow: 0 0 5px #f00, 0 0 10px #0f0, 0 0 15px #00f;
+  animation: messageGlitch 0.1s infinite;
+  pointer-events: none;
+  z-index: 100;
+}
+
+@keyframes messageGlitch {
+  0% { transform: translate(-50%, -50%) skew(0deg); clip-path: inset(0 0 0 0); }
+  20% { transform: translate(calc(-50% + 2px), calc(-50% - 1px)) skew(0.5deg); clip-path: inset(10% 0 0 0); }
+  40% { transform: translate(calc(-50% - 3px), calc(-50% + 1px)) skew(-0.5deg); clip-path: inset(0 0 20% 0); }
+  60% { transform: translate(calc(-50% + 3px), -50%) skew(0.3deg); clip-path: inset(0 0 0 10%); }
+  80% { transform: translate(calc(-50% - 1px), calc(-50% + 2px)) skew(-0.3deg); clip-path: inset(5% 10% 0 0); }
+  100% { transform: translate(-50%, calc(-50% - 2px)) skew(0deg); clip-path: inset(0 0 0 0); }
+}
+
+/* Calm Glitch Overlay */
+.glitch-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 0, 0, 0.05),
+    rgba(255, 0, 0, 0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  mix-blend-mode: difference;
+  animation: glitchAnim 0.2s infinite;
+}
+
+@keyframes glitchAnim {
+  0% { transform: translate(0, 0) skew(0deg); }
+  20% { transform: translate(1px, -0.5px) skew(0.2deg); }
+  40% { transform: translate(-1.5px, 0.5px) skew(-0.2deg); }
+  60% { transform: translate(1.5px, 0px) skew(0.1deg); }
+  80% { transform: translate(-0.5px, 1px) skew(-0.1deg); }
+  100% { transform: translate(0, -1px) skew(0deg); }
+}
+
+/* Intense Glitch Background */
+.glitch-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  mix-blend-mode: difference;
+  animation: intenseGlitch 0.05s infinite;
+  z-index: -1;
+}
+
+@keyframes intenseGlitch {
+  0% { transform: translate(0, 0) skew(0deg); }
+  20% { transform: translate(4px, -2px) skew(1deg); }
+  40% { transform: translate(-5px, 2px) skew(-1deg); }
+  60% { transform: translate(5px, 0px) skew(0.7deg); }
+  80% { transform: translate(-2px, 4px) skew(-0.7deg); }
+  100% { transform: translate(0, -4px) skew(0deg); }
+}
+
+
+
+
