@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Action Tips</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="brand">
+        <img src="assets/img/pftplogo.png" alt="Playing for the Planet Logo" class="logo" />
+        <h1>Playing for the Planet</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gamejam.html">Game Jam</a></li>
+        <li><a href="action-tips.html">Action Tips</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+      <!--Dark mode toggle-->
+      <div class="dark-toggle">
+      <label class="switch">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    </nav>
+  </header>
+
+ <main class="action-tips">
+  <section class="action-banner">
+    <h2>Small Changes, Big Impact</h2>
+    <p>Easy ways to live more sustainably — start with just one tip today!</p>
+  </section>
+
+  <section class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-icon">🌿</div>
+      <h3>Eat More Plants</h3>
+      <p>Try a meat-free day each week! Plant-based meals reduce your carbon footprint and are delicious too.</p>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-icon">💡</div>
+      <h3>Save Energy</h3>
+      <p>Switch off lights and unplug devices when not in use. Bonus: it saves money too!</p>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-icon">🚴‍♀️</div>
+      <h3>Travel Green</h3>
+      <p>Walk, bike, or take public transport when you can. Cleaner air = healthier planet.</p>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-icon">🌊</div>
+      <h3>Protect Water</h3>
+      <p>Take shorter showers, fix leaks, and don’t pour chemicals down the drain.</p>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-icon">♻️</div>
+      <h3>Reduce & Reuse</h3>
+      <p>Bring your own bag, bottle, and cup. Skip the single-use stuff where possible.</p>
+    </div>
+  </section>
+</main>
+
+<script>
+  const tipCards = document.querySelectorAll('.tip-card');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      entry.target.classList.toggle('visible', entry.isIntersecting);
+    });
+  }, { threshold: 0.1 });
+
+  tipCards.forEach(card => observer.observe(card));
+</script>
+
+<!-- Banner Section -->
+<section class="banner">
+  <h2>Every Action Counts</h2>
+  <p>Change starts with small steps — take your first one today.</p>
+</section>
+
+<!-- Action Cards Section -->
+<div class="checklist-wrapper">
+  <section class="checklist-section">
+    <h2>Level Up Sustainably 🎮</h2>
+    <p>Complete these simple eco-gamer actions to power up your impact!</p>
+    <ul class="checklist">
+      <li><label><input type="checkbox" class="tip-check" data-index="0" /> Unplug consoles when not in use</label></li>
+      <li><label><input type="checkbox" class="tip-check" data-index="1" /> Buy digital games or second-hand discs</label></li>
+      <li><label><input type="checkbox" class="tip-check" data-index="2" /> Recycle old electronics responsibly</label></li>
+      <li><label><input type="checkbox" class="tip-check" data-index="3" /> Choose energy-efficient devices</label></li>
+      <li><label><input type="checkbox" class="tip-check" data-index="4" /> Support games with eco-friendly themes</label></li>
+      <li><label><input type="checkbox" class="tip-check" data-index="5" /> Limit gaming time to save power</label></li>
+    </ul>
+  </section>
+
+  <div class="progress-tracker">
+    <p><span id="completed">0</span>/6 Actions Completed ✅</p>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div class="checklist-buttons">
+    <button id="resetProgress">Reset Progress</button>
+    <button id="manualSave">Save Progress</button>
+  </div>
+
+  <div id="successMessage">
+    <div class="success-box">
+      ✅ You did it! All sustainable gaming actions complete!
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const checkboxes = document.querySelectorAll('.tip-check');
+    const completed = document.getElementById('completed');
+    const progressFill = document.getElementById('progressFill');
+    const resetBtn = document.getElementById('resetProgress');
+    const manualSaveBtn = document.getElementById('manualSave');
+    const successMsg = document.getElementById('successMessage');
+
+    // Load saved checkbox states
+    checkboxes.forEach((cb, i) => {
+      const saved = localStorage.getItem(`check-${i}`);
+      if (saved === 'true') {
+        cb.checked = true;
+      }
+    });
+
+    function updateProgress() {
+      let checkedCount = 0;
+      checkboxes.forEach((cb, i) => {
+        localStorage.setItem(`check-${i}`, cb.checked);
+        if (cb.checked) checkedCount++;
+      });
+
+      completed.textContent = checkedCount;
+      const percentage = (checkedCount / checkboxes.length) * 100;
+      progressFill.style.width = `${percentage}%`;
+
+      if (checkedCount === checkboxes.length) {
+        showSuccess();
+        celebrate();
+      } else {
+        successMsg.style.display = 'none';
+      }
+    }
+
+    function celebrate() {
+      confetti({
+        particleCount: 120,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    }
+
+    function showSuccess() {
+      successMsg.style.display = 'block';
+    }
+
+    checkboxes.forEach(cb => cb.addEventListener('change', updateProgress));
+
+    resetBtn.addEventListener('click', () => {
+      checkboxes.forEach((cb, i) => {
+        cb.checked = false;
+        localStorage.removeItem(`check-${i}`);
+      });
+      successMsg.style.display = 'none';
+      updateProgress();
+    });
+
+    manualSaveBtn.addEventListener('click', () => {
+      checkboxes.forEach((cb, i) => {
+        localStorage.setItem(`check-${i}`, cb.checked);
+      });
+      alert("Progress saved!");
+    });
+
+    updateProgress(); // Initial run
+  });
+</script>
+
+  <footer>
+    <p>&copy; 2025 Playing for the Planet. Designed for sustainability.</p>
+  </footer>
+
+
+
+
+ 
+
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feedback</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="brand">
+        <img src="assets/img/pftplogo.png" alt="Playing for the Planet Logo" class="logo" />
+        <h1>Playing for the Planet</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gamejam.html">Game Jam</a></li>
+        <li><a href="action-tips.html">Action Tips</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+      <!--Dark mode toggle-->
+      <div class="dark-toggle">
+      <label class="switch">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    </nav>
+  </header>
+
+  <main class="feedback-page">
+    <section class="feedback-intro">
+      <h2>Help Us Grow</h2>
+      <p>Tell us what you liked, what could be better, or what you'd love to see in future Green Game Jams!</p>
+    </section>
+
+<section class="feedback-form">
+  <form id="feedbackForm" action="#" method="post">
+    <label for="name">Name (optional)</label>
+    <input type="text" id="name" name="name" placeholder="Your name..." />
+
+    <label for="feedback">Your Feedback</label>
+    <textarea id="feedback" name="feedback" rows="5" placeholder="Type your thoughts here..."></textarea>
+
+    <label for="idea">Got an Idea?</label>
+    <input type="text" id="idea" name="idea" placeholder="Suggest a game or tip..." />
+
+    <button type="submit">Send Feedback</button>
+  </form>
+</section>
+
+<!-- Feedback Success Message -->
+<div id="feedbackSuccess" class="feedback-popup">
+  <div class="feedback-success-box">
+    🎉 Thank you for your feedback!
+  </div>
+</div>
+
+
+<section class="pledge-invite">
+  <h3>Want to Take Action?</h3>
+  <p>You can also make a pledge to help the planet — it's quick and easy.</p>
+  <a href="our-impact.html" class="pledge-button">Make a Pledge</a>
+</section>
+</main>
+
+<script>
+const feedbackForm = document.getElementById('feedbackForm');
+const feedbackMessage = document.getElementById('feedbackSuccess');
+
+if (feedbackForm) {
+  feedbackForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    
+    // Show message
+    feedbackMessage.style.display = 'block';
+    feedbackMessage.style.opacity = '1';
+
+    // Hide after 3 seconds with fadeOut effect
+    setTimeout(() => {
+      feedbackMessage.style.animation = 'fadeOut 1s ease forwards';
+    }, 3000);
+
+    // Remove from screen after animation ends
+    setTimeout(() => {
+      feedbackMessage.style.display = 'none';
+      feedbackMessage.style.animation = '';
+    }, 4000);
+
+    // Clear form inputs
+    feedbackForm.reset();
+  });
+}
+
+</script>
+
+  <footer>
+    <p>&copy; 2025 Playing for the Planet. Designed for sustainability.</p>
+  </footer>
+
+</body>
+</html>

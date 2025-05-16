@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Impact - Playing for the Planet</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+     <header>
+    <nav class="navbar">
+      <div class="brand">
+        <img src="assets/img/pftplogo.png" alt="Playing for the Planet Logo" class="logo" />
+        <h1>Playing for the Planet</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gamejam.html">Game Jam</a></li>
+        <li><a href="action-tips.html">Action Tips</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+      <!--Dark mode toggle-->
+      <div class="dark-toggle">
+      <label class="switch">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    </nav>
+  </header>
+
+  <section class="impact-header">
+    <h2>Our Impact</h2>
+    <p>How games and gamers are creating real change for the planet.</p>
+  </section>
+
+  <section class="impact-stats">
+    <div class="stat-card">
+      <h3>🌱 Planet-Friendly Games</h3>
+      <p>Game studios are embedding sustainability missions into gameplay, educating players through fun and action.</p>
+    </div>
+    <div class="stat-card">
+      <h3>🎮 Player Reach</h3>
+      <p>Over 265 million players engaged in environmental game activations worldwide.</p>
+    </div>
+    <div class="stat-card">
+      <h3>🌍 Climate Awareness</h3>
+      <p>From ocean pollution to forest preservation, players are learning and acting on global issues.</p>
+    </div>
+  </section>
+
+  <section class="impact-visuals">
+    <h3>Infographic: Our Reach in Numbers</h3>
+    <div class="progress-container">
+      <div class="progress-circle" style="--percentage: 80%;" data-label="80% awareness"></div>
+      <div class="progress-circle" style="--percentage: 60%;" data-label="60% player pledges"></div>
+      <div class="progress-circle" style="--percentage: 90%;" data-label="90% studio support"></div>
+    </div>
+  </section>
+
+  <section class="impact-story">
+    <h3>💚 Make Your Pledge</h3>
+    <p>Join us by pledging to take small green actions during your playtime:</p>
+    <form id="pledgeForm" class="pledge-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Your name" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Your email" required />
+
+      <button type="submit" class="cta-button">Make My Pledge</button>
+    </form>
+
+    <div id="successMessage" class="success-message" style="display: none;">
+      ✅ Thank you for making your pledge! You're officially part of the green gaming movement.
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Playing for the Planet. Designed for sustainability.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('pledgeForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      form.reset();
+      successMessage.style.display = 'block';
+      form.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
+
+
+
